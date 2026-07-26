@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Debankur Chatterjee's Portfolio - BCA Graduate & Web Developer">
+    <meta name="description" content="Debankur Chatterjee - Associate at Tech Mahindra | Web Developer">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Debankur's Portfolio | Web Developer</title>
+    <title>Debankur's Portfolio | Associate at Tech Mahindra</title>
     <style>
         :root {
             --primary: #e63946;
@@ -27,6 +27,8 @@
             --radius-sm: 8px;
             --transition: cubic-bezier(0.4, 0, 0.2, 1);
             --section-gap: 120px;
+            --green: #2ecc71;
+            --green-glow: rgba(46, 204, 113, 0.4);
         }
 
         * {
@@ -52,9 +54,104 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
         ::selection {
             background: var(--primary);
             color: white;
+        }
+
+        /* ===== CURRENT ROLE BADGE ===== */
+        .current-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.3rem 1rem;
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            border-radius: 100px;
+            font-size: 1.1rem;
+            color: var(--green);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .current-badge .pulse-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulseGreen 2s ease infinite;
+        }
+
+        @keyframes pulseGreen {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(46, 204, 113, 0); }
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            animation: fadeInUp 0.8s var(--transition) 0.8s forwards;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .scroll-indicator span {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .scroll-indicator .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid var(--text-dim);
+            border-radius: 13px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 2px;
+            animation: scrollWheel 1.5s ease infinite;
+        }
+
+        @keyframes scrollWheel {
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
         }
 
         ::-webkit-scrollbar {
@@ -810,9 +907,9 @@
 
         .exp-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.4rem;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -1250,10 +1347,206 @@
                 padding: 2rem;
             }
         }
+
+        /* ===== 3D FLOATING ORBS ===== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(230, 57, 70, 0.07);
+            top: 10%;
+            left: -5%;
+            animation: floatOrb1 18s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(168, 218, 220, 0.05);
+            bottom: 15%;
+            right: -5%;
+            animation: floatOrb2 22s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: rgba(230, 57, 70, 0.05);
+            top: 50%;
+            left: 40%;
+            animation: floatOrb3 20s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, 60px) scale(1.1); }
+            66% { transform: translate(-40px, 100px) scale(0.9); }
+        }
+
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-60px, -80px) scale(1.15); }
+            66% { transform: translate(50px, -40px) scale(0.85); }
+        }
+
+        @keyframes floatOrb3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-100px, 60px) scale(1.2); }
+        }
+
+        /* ===== 3D CARD TILT ===== */
+        .tilt-card {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .tilt-card .project-card,
+        .tilt-card .skill-card,
+        .tilt-card .exp-card,
+        .tilt-card .contact-card,
+        .tilt-card .timeline-card {
+            transform-style: preserve-3d;
+            transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition);
+        }
+
+        .tilt-card .project-card:hover,
+        .tilt-card .skill-card:hover,
+        .tilt-card .exp-card:hover,
+        .tilt-card .contact-card:hover,
+        .tilt-card .timeline-card:hover {
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(230, 57, 70, 0.06);
+        }
+
+        /* ===== 3D ROTATING GLOW BORDER (PROJECTS) ===== */
+        .project-card {
+            position: relative;
+            background: var(--bg-card);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: var(--radius);
+            background: conic-gradient(from var(--card-angle, 0deg), transparent 40%, var(--primary) 50%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s var(--transition);
+            z-index: -1;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.6;
+        }
+
+        /* ===== 3D IMAGE HOVER ===== */
+        .project-img {
+            perspective: 600px;
+        }
+
+        .project-img img {
+            transition: transform 0.6s var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.08) rotateY(-3deg) rotateX(2deg);
+        }
+
+        /* ===== FLOATING ANIMATION FOR HERO IMAGE ===== */
+        .home-img img {
+            animation: floatHero 6s ease-in-out infinite;
+        }
+
+        @keyframes floatHero {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* ===== 3D SKILL ICON SPIN ===== */
+        .skill-icon {
+            transition: transform 0.5s var(--transition);
+            display: inline-block;
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: scale(1.15) rotateY(15deg) rotateX(-10deg);
+        }
+
+        /* ===== GLASSMORPHISM UPGRADE ===== */
+        .project-card,
+        .skill-card,
+        .exp-card,
+        .contact-card,
+        .timeline-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .project-card:hover,
+        .skill-card:hover,
+        .exp-card:hover,
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(230, 57, 70, 0.25);
+        }
+
+        /* ===== 3D DEPTH SHADOW ON PROJECT CARDS ===== */
+        .project-card {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+            box-shadow:
+                0 24px 64px rgba(0, 0, 0, 0.4),
+                0 8px 24px rgba(230, 57, 70, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== SECTION DIVIDER GLOW ===== */
+        .section-line {
+            position: relative;
+            overflow: visible;
+        }
+
+        .section-line::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 12px;
+            background: var(--primary);
+            filter: blur(12px);
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+
+        /* ===== CONTACT CARD 3D LIFT ===== */
+        .contact-card {
+            transform: perspective(800px) translateZ(0);
+            transition: all 0.5s var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: perspective(800px) translateZ(20px) translateY(-8px);
+        }
     </style>
 </head>
 
 <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
     <div class="mobile-overlay" id="mobile-overlay"></div>
 
     <header id="header">
@@ -1278,14 +1571,14 @@
         <div class="home-content">
             <div class="tag">
                 <span class="dot"></span>
-                Available for opportunities
+                Currently at Tech Mahindra
             </div>
             <h1>Hi, I'm <span>Debankur<br>Chatterjee</span></h1>
             <div class="typing-row">
                 <span class="prefix">I'm a</span>
                 <span class="typing-text" id="typing-text"></span>
             </div>
-            <p>BCA graduate from IEM with a strong foundation in computer science, specializing in full-stack web development, data structures, DBMS, and modern programming paradigms.</p>
+            <p>Associate at Tech Mahindra and BCA graduate from IEM, with a strong foundation in computer science, specializing in web development, data structures, DBMS, and modern programming paradigms.</p>
             <div class="hero-actions">
                 <a href="#contact" class="btn-primary">
                     <i class="fas fa-paper-plane"></i> Get In Touch
@@ -1300,6 +1593,10 @@
                 <a href="https://www.instagram.com/_.justt.debankur._" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="mailto:debankurbulet@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll</span>
         </div>
     </section>
 
@@ -1378,6 +1675,7 @@
             <button class="category-btn" data-category="frontend">Frontend</button>
             <button class="category-btn" data-category="backend">Backend</button>
             <button class="category-btn" data-category="database">Database</button>
+            <button class="category-btn" data-category="frameworks">Frameworks</button>
             <button class="category-btn" data-category="tools">Tools</button>
         </div>
         <div class="skills-grid">
@@ -1461,6 +1759,46 @@
                 </div>
                 <div class="progress-bar"><div class="progress-fill" data-percent="90"></div></div>
             </div>
+            <div class="skill-card reveal" data-category="frameworks">
+                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                <h3 class="skill-title">React</h3>
+                <p class="skill-description">Component-based UI development, hooks, state management, and SPA architecture.</p>
+                <div class="progress-header">
+                    <span class="progress-label">Proficiency</span>
+                    <span class="progress-value">80%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" data-percent="80"></div></div>
+            </div>
+            <div class="skill-card reveal" data-category="backend">
+                <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                <h3 class="skill-title">Node.js</h3>
+                <p class="skill-description">Server-side JavaScript, REST APIs, Express middleware, and real-time applications.</p>
+                <div class="progress-header">
+                    <span class="progress-label">Proficiency</span>
+                    <span class="progress-value">75%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" data-percent="75"></div></div>
+            </div>
+            <div class="skill-card reveal" data-category="database">
+                <div class="skill-icon"><i class="fas fa-leaf"></i></div>
+                <h3 class="skill-title">MongoDB</h3>
+                <p class="skill-description">NoSQL database design, CRUD operations, aggregation pipelines, and indexing.</p>
+                <div class="progress-header">
+                    <span class="progress-label">Proficiency</span>
+                    <span class="progress-value">75%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" data-percent="75"></div></div>
+            </div>
+            <div class="skill-card reveal" data-category="frontend">
+                <div class="skill-icon"><i class="fas fa-wind"></i></div>
+                <h3 class="skill-title">Tailwind CSS</h3>
+                <p class="skill-description">Utility-first CSS framework for rapid UI development and responsive design.</p>
+                <div class="progress-header">
+                    <span class="progress-label">Proficiency</span>
+                    <span class="progress-value">80%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" data-percent="80"></div></div>
+            </div>
         </div>
     </section>
 
@@ -1513,6 +1851,12 @@
             <div class="section-line"></div>
         </div>
         <div class="exp-cards">
+            <div class="exp-card reveal">
+                <span class="current-badge"><span class="pulse-dot"></span> Currently Working</span>
+                <p class="exp-date">Jun 2026 - Present</p>
+                <h3>Associate</h3>
+                <p>Working as an Associate at Tech Mahindra, contributing to enterprise-level projects and collaborating with cross-functional teams in an agile environment.</p>
+            </div>
             <div class="exp-card reveal">
                 <span class="mode">Hybrid</span>
                 <p class="exp-date">Feb 2025 - May 2025</p>
@@ -1573,7 +1917,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Debankur Chatterjee. All rights reserved.</p>
+        <p>&copy; 2026 Debankur Chatterjee. All rights reserved.</p>
         <div class="socials">
             <a href="https://www.linkedin.com/in/debankur-chatterjee-57a343282" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://github.com/Debankur12" target="_blank"><i class="fab fa-github"></i></a>
@@ -1661,7 +2005,7 @@
 
             /* === TYPING EFFECT === */
             var typingEl = document.getElementById('typing-text');
-            var words = ['Web Developer', 'Front-End Developer', 'Full Stack Developer', 'BCA Graduate', 'Problem Solver'];
+            var words = ['Web Developer', 'Front-End Developer', 'React Developer', 'Associate at Tech Mahindra', 'Problem Solver'];
             var wordIdx = 0;
             var charIdx = 0;
             var deleting = false;
@@ -1747,6 +2091,46 @@
                 var email = document.getElementById('email').value;
                 var message = document.getElementById('message').value;
                 window.location.href = 'mailto:debankurbulet@gmail.com?subject=Portfolio Contact from ' + encodeURIComponent(name) + '&body=' + encodeURIComponent('Name: ' + name + '%0AEmail: ' + email + '%0AMessage: ' + message);
+            });
+
+            /* === 3D TILT EFFECT ON CARDS === */
+            var tiltTargets = document.querySelectorAll('.project-card, .skill-card, .exp-card, .contact-card');
+            tiltTargets.forEach(function (card) {
+                card.addEventListener('mousemove', function (e) {
+                    var rect = card.getBoundingClientRect();
+                    var x = e.clientX - rect.left;
+                    var y = e.clientY - rect.top;
+                    var centerX = rect.width / 2;
+                    var centerY = rect.height / 2;
+                    var rotateX = (y - centerY) / 18;
+                    var rotateY = (centerX - x) / 18;
+                    card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function () {
+                    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+                });
+            });
+
+            /* === MOUSE PARALLAX ON HERO ORBS === */
+            document.addEventListener('mousemove', function (e) {
+                var x = (e.clientX / window.innerWidth - 0.5) * 2;
+                var y = (e.clientY / window.innerHeight - 0.5) * 2;
+                var orb1 = document.querySelector('.orb-1');
+                var orb2 = document.querySelector('.orb-2');
+                var orb3 = document.querySelector('.orb-3');
+                if (orb1) orb1.style.transform = 'translate(' + (x * 30) + 'px, ' + (y * 30) + 'px)';
+                if (orb2) orb2.style.transform = 'translate(' + (x * -20) + 'px, ' + (y * -20) + 'px)';
+                if (orb3) orb3.style.transform = 'translate(' + (x * 15) + 'px, ' + (y * 15) + 'px)';
+            });
+
+            /* === GLOW BORDER ROTATION ON PROJECT CARDS === */
+            var glowCards = document.querySelectorAll('.project-card');
+            glowCards.forEach(function (card) {
+                card.addEventListener('mousemove', function (e) {
+                    var rect = card.getBoundingClientRect();
+                    var angle = Math.atan2(e.clientY - rect.top - rect.height / 2, e.clientX - rect.left - rect.width / 2) * (180 / Math.PI);
+                    card.style.setProperty('--card-angle', angle + 'deg');
+                });
             });
         });
     </script>
